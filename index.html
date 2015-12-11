@@ -16,7 +16,7 @@
     </nav>
     <div class="container" ng-controller="workoutCtrl">
         <div class="well">
-            <label for="total">总时间：</label><span id="total"></span>
+            <label>总时间：</label><span ng-bind="total() - 8*3600*1000 | date : 'HH:mm:ss'"></span>
             <ul class="list-group">
                 <li class="list-group-item clearfix" ng-repeat="item in list">
                     <span>{{item.name}}</span>

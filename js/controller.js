@@ -7,4 +7,13 @@ workoutApp.controller('workoutCtrl', function ($scope) {
         {name: '跳绳', time: 0},
         {name: '仰卧起坐', time: 0}
     ];
+
+    $scope.total = function () {
+    	var total = 0;
+    	angular.forEach($scope.list, function (item) {
+    		total += (item.time - 0)*1000;
+    	});
+
+    	return total;
+    };
 });
