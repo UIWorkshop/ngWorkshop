@@ -15,38 +15,30 @@
     <div class="container">
         <div class="well">
             <ul class="list-group">
-                <li class="list-group-item clearfix">
-                    <span>跑步</span>
-                    <span class="col-md-2 pull-right">
-                        <input type="text" placeholder="持续时间">
-                    </span>
-                </li>
-                <li class="list-group-item clearfix">
-                    <span>游泳</span>
-                    <span class="col-md-2 pull-right">
-                        <input type="text" placeholder="持续时间">
-                    </span>
-                </li>
-                <li class="list-group-item clearfix">
-                    <span>俯卧撑</span>
-                    <span class="col-md-2 pull-right">
-                        <input type="text" placeholder="持续时间">
-                    </span>
-                </li>
-                <li class="list-group-item clearfix">
-                    <span>跳绳</span>
-                    <span class="col-md-2 pull-right">
-                        <input type="text" placeholder="持续时间">
-                    </span>
-                </li>
-                <li class="list-group-item clearfix">
-                    <span>仰卧起坐</span>
-                    <span class="col-md-2 pull-right">
-                        <input type="text" placeholder="持续时间">
-                    </span>
-                </li>
             </ul>
         </div>
     </div>
+
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script>
+        (function ($) {
+            var list = [
+                {name: '跑步'},
+                {name: '游泳'},
+                {name: '俯卧撑'},
+                {name: '跳绳'},
+                {name: '仰卧起坐'}
+            ];
+
+            var $list = $('.list-group');
+            $.each(list, function (index, item) {
+                var $item = $('<li>').addClass('list-group-item clearfix');
+                $item.append($('<span>').html(item.name));
+                $item.append($('<span>').addClass('col-md-2 pull-right').html($('<input type="text">').attr('placeholder', '持续时间')));
+
+                $list.append($item);
+            });
+        })(jQuery);
+    </script>
 </body>
 </html>
