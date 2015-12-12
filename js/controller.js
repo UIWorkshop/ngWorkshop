@@ -8,7 +8,7 @@ workoutApp.controller('workoutCtrl', function ($scope) {
         {name: '仰卧起坐', time: 0}
     ];
 
-    $scope.editingWorkout = {};
+    $scope.editingWorkout;
 
     $scope.total = function () {
     	var total = 0;
@@ -26,12 +26,17 @@ workoutApp.controller('workoutCtrl', function ($scope) {
         };
     };
 
-    $scope.save = function () {
+    $scope.save = function (workout) {
+        workout.name.$pristine = false;
+        if (workout.$invalid) {
+            return;
+        }
         $scope.list.push($scope.editingWorkout);
-        $scope.cancel();
+        $scope.cancel(workout);
     };
 
-    $scope.cancel = function () {
-        $scope.editingWorkout = {};
+    $scope.cancel = function (workout) {
+        workout.name.$pristine = true;
+        $scope.editingWorkout = null;
     };
 });
