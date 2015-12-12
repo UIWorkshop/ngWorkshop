@@ -15,16 +15,43 @@
         </div>
     </nav>
     <div class="container" ng-controller="workoutCtrl">
-        <div class="well">
-            <label>总时间：</label><span ng-bind="total() - 8*3600*1000 | date : 'HH:mm:ss'"></span>
-            <ul class="list-group">
-                <li class="list-group-item clearfix" ng-repeat="item in list">
-                    <span>{{item.name}}</span>
-                    <span class="col-md-2 pull-right">
-                        <input type="text" ng-model="item.time" placeholder="持续时间">
-                    </span>
-                </li>
-            </ul>
+        <div class="panel">
+            <div class="panel-heading">
+                <a class="btn btn-primary" ng-click="new()">添加</a>
+            </div>
+            <div class="panel-body well">
+                <label>总时间：</label><span ng-bind="total() - 8*3600*1000 | date : 'HH:mm:ss'"></span>
+                <ul class="list-group">
+                    <li class="list-group-item clearfix" ng-repeat="item in list">
+                        <span>{{item.name}}</span>
+                        <span class="col-md-5 pull-right text-right">
+                            <input type="text" ng-model="item.time" placeholder="持续时间">
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal fade" ng-class="editingWorkout.name === undefined ?'': 'in show'">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a class="close" ng-click="cancel()"><span>&times;</span></a>
+                        <h4 class="modal-title">添加新的锻炼</h4>
+                    </div>
+                    <div class="modal-body form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-3 col-md-2 col-lg-2 control-label" for="name">名称：</label>
+                            <div class="col-sm-9 col-md-10 col-lg-10">
+                                <input type="text" id="name" class="form-control" ng-model="editingWorkout.name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" ng-click="cancel()">取消</button>
+                        <button type="button" class="btn btn-primary" ng-click="save()">保存</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

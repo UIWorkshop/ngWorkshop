@@ -8,6 +8,8 @@ workoutApp.controller('workoutCtrl', function ($scope) {
         {name: '仰卧起坐', time: 0}
     ];
 
+    $scope.editingWorkout = {};
+
     $scope.total = function () {
     	var total = 0;
     	angular.forEach($scope.list, function (item) {
@@ -15,5 +17,21 @@ workoutApp.controller('workoutCtrl', function ($scope) {
     	});
 
     	return total;
+    };
+
+    $scope.new = function () {
+        $scope.editingWorkout = {
+            name: '',
+            time: 0
+        };
+    };
+
+    $scope.save = function () {
+        $scope.list.push($scope.editingWorkout);
+        $scope.cancel();
+    };
+
+    $scope.cancel = function () {
+        $scope.editingWorkout = {};
     };
 });
