@@ -15,6 +15,10 @@
                             <span class="help-block" ng-show="workout.name.$invalid && !workout.name.$pristine">请填写名称</span>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-2 col-lg-2 control-label" for="start">开始日期：</label>
+                        <div id="start" class="col-sm-9 col-md-10 col-lg-10" date-editor="editingWorkout.start"></div>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">

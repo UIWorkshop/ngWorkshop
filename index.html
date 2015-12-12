@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
     <script src="lib/angularjs/angular.min.js"></script>
     <script src="js/controller.js"></script>
+    <script src="js/date-editor.js"></script>
 </head>
 <body ng-app="workoutApp">
     <nav class="navbar navbar-inverse">
@@ -24,6 +25,7 @@
                 <ul class="list-group">
                     <li class="list-group-item clearfix" ng-repeat="item in list">
                         <span>{{item.name}}</span>
+                        <span ng-bind="item.start | date:'yyyy/MM/dd'"></span>
                         <span class="col-md-5 pull-right text-right">
                             <input type="text" ng-model="item.time" placeholder="持续时间">
                         </span>
