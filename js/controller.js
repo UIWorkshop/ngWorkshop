@@ -1,23 +1,23 @@
 var workoutApp = angular.module('workoutApp');
-workoutApp.controller('workoutCtrl', ['$scope', '$routeParams',function ($scope, $routeParams) {
-	$scope.list = [
-        {id: 1,name: '跑步', start: new Date('2015-01-01'), time: 0},
-        {id: 2,name: '游泳', start: new Date('2015-01-01'), time: 0},
-        {id: 3,name: '俯卧撑', start: new Date('2015-01-01'), time: 0},
-        {id: 4,name: '跳绳', start: new Date('2015-01-01'), time: 0},
-        {id: 5,name: '仰卧起坐', start: new Date('2015-01-01'), time: 0}
-    ];
+workoutApp.controller('workoutCtrl', ['$scope', '$routeParams', 'workout', function ($scope, $routeParams, workoutService) {
+    $scope.list = [];
+    workoutService.load(function (data) {
+        $scope.list = data;
+    });
 
     $scope.editingWorkout;
-    $scope.currentWorkout;
+    $scope.currentWorkout = function () {
+        var currentWorkout;
+        if ($routeParams.workoutId > 0) {
+            angular.forEach($scope.list, function (item) {
+                if (item.id == $routeParams.workoutId) {
+                    currentWorkout = item;
+                }
+            });
+        }
+        return currentWorkout;
+    };
 
-    if ($routeParams.workoutId > 0) {
-        angular.forEach($scope.list, function (item) {
-            if (item.id == $routeParams.workoutId) {
-                $scope.currentWorkout = item;
-            }
-        });
-    }
 
     $scope.total = function () {
     	var total = 0;
