@@ -1,11 +1,11 @@
-var workoutApp = angular.module('workoutApp', []);
+var workoutApp = angular.module('workoutApp');
 workoutApp.controller('workoutCtrl', function ($scope) {
 	$scope.list = [
-        {name: '跑步', start: new Date('2015-01-01'), time: 0},
-        {name: '游泳', start: new Date('2015-01-01'), time: 0},
-        {name: '俯卧撑', start: new Date('2015-01-01'), time: 0},
-        {name: '跳绳', start: new Date('2015-01-01'), time: 0},
-        {name: '仰卧起坐', start: new Date('2015-01-01'), time: 0}
+        {id: 1,name: '跑步', start: new Date('2015-01-01'), time: 0},
+        {id: 2,name: '游泳', start: new Date('2015-01-01'), time: 0},
+        {id: 3,name: '俯卧撑', start: new Date('2015-01-01'), time: 0},
+        {id: 4,name: '跳绳', start: new Date('2015-01-01'), time: 0},
+        {id: 5,name: '仰卧起坐', start: new Date('2015-01-01'), time: 0}
     ];
 
     $scope.editingWorkout;
@@ -21,6 +21,7 @@ workoutApp.controller('workoutCtrl', function ($scope) {
 
     $scope.new = function () {
         $scope.editingWorkout = {
+            id: $scope.list.length + 1,
             name: '',
             time: 0,
             start: new Date('2015-02-01')
