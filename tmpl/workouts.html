@@ -6,7 +6,7 @@
         <label>总时间：</label><span ng-bind="total() - 8*3600*1000 | date : 'HH:mm:ss'"></span>
         <ul class="list-group">
             <li class="list-group-item clearfix" ng-repeat="item in list">
-                <a href="#/workout/{{item.id}}">{{item.name}}</a>
+                <a href="" ng-click="to(item.id)">{{item.name}}</a>
                 <span ng-bind="item.start | date:'yyyy/MM/dd'"></span>
                 <span class="col-md-5 pull-right text-right">
                     <input type="text" ng-model="item.time" placeholder="持续时间">

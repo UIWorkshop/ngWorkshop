@@ -1,19 +1,19 @@
-<div class="panel panel-default" ng-if="currentWorkout()">
+<div class="panel panel-default" ng-if="id">
     <div class="panel-heading">
         <a href="#/index" class="btn btn-default pull-right">返回</a>
-        <h4>{{currentWorkout().name}}</h4>
+        <h4>{{workout.name}}</h4>
     </div>
     <div class="panel-body form-horizontal">
         <div class="form-group">
             <label class="col-sm-3 col-md-2 col-lg-2 control-label">开始日期：</label>
             <div class="col-sm-9 col-md-2 col-lg-2">
-                <div class="form-control-static">{{currentWorkout().start | date:'yyyy年MM月dd日'}}</div>
+                <div class="form-control-static">{{workout.start | date:'yyyy年MM月dd日'}}</div>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 col-md-2 col-lg-2 control-label">持续时间：</label>
             <div class="col-sm-9 col-md-2 col-lg-2">
-                <div class="form-control-static">{{currentWorkout().time - 3600*8*1000 | date: 'HH小时mm分钟ss秒'}}</div>
+                <div class="form-control-static">{{workout.time*1000 - 3600*8*1000 | date: 'HH小时mm分钟ss秒'}}</div>
             </div>
         </div>
     </div>
