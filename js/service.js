@@ -19,6 +19,7 @@ angular.module('workoutApp')
 }])
 .factory('Workout', function () {
 	var Workout = function (params) {
+        params = params || {};
         this.id = params.id || 0;
         this.name = params.name || '';
         this.time = params.time || 0;
