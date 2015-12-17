@@ -1,9 +1,18 @@
-var workoutApp = angular.module('workoutApp');
-workoutApp.service('loadWorkouts', ['$http', '$q', function ($http, $q) {
+angular.module('workoutApp')
+.service('loadWorkouts', ['$http', '$q', function ($http, $q) {
     return {
         load: function () {
         	var deferred = $q.defer();
             $http.get('/workouts.json').success(deferred.resolve);
+            return deferred.promise;
+        }
+    };
+}])
+.service('loadMembers', ['$http', '$q', function ($http, $q) {
+    return {
+        load: function (id) {
+        	var deferred = $q.defer();
+            $http.get('/members/' + id + '.json').success(deferred.resolve);
             return deferred.promise;
         }
     };

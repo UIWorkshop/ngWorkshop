@@ -31,5 +31,5 @@ workoutApp.config(function ($routeProvider, $provide) {
                 }
             }
         })
-        .otherwise({ redirectTo: 'index' });
+        .otherwise({ redirectTo: '/index' });
 });

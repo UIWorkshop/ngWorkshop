@@ -45,16 +45,21 @@ workoutApp.controller('workoutsCtrl', ['$scope', '$log', '$routeParams', '$locat
     }
 }]);
 
-workoutApp.controller('workoutCtrl', ['$scope', '$log', '$routeParams', 'loadWorkouts', 'Workout', 
-    function ($scope, $log, $routeParams, loadWorkouts, Workout) {
+workoutApp.controller('workoutCtrl', ['$scope', '$log', '$routeParams', 'loadWorkouts', 'loadMembers', 'Workout', 
+    function ($scope, $log, $routeParams, loadWorkouts, loadMembers, Workout) {
     $log.info(Workout.a);
-        
+
     $scope.id = $routeParams.workoutId || 0;
+    $scope.workout = {};
+    $scope.members = [];
     loadWorkouts.load().then(function (data) {
         angular.forEach(data, function (item) {
             if (item.id == $scope.id) {
                 $scope.workout = new Workout(item);
             }
         });
+        return loadMembers.load($scope.workout.name);
+    }).then(function (data) {
+        $scope.members = data;
     });
 }]);
