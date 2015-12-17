@@ -1,17 +1,30 @@
 describe('workout controller', function() {
-    var $scope;
+    var scope;
     beforeEach(function () {
         module('workoutApp');
-        inject(function($rootScope, $controller) {
-            $scope = $rootScope.$new();
+        inject(function($rootScope, $log, $routeParams, $controller) {
+            scope = $rootScope.$new();
+            $routeParams.workoutId = 123;
             $controller('workoutCtrl', {
-                $scope: $scope, 
-                workout: {load: angular.noop}
+                $scope: scope,
+                $log: $log,
+                $routeParams: $routeParams,
+                loadWorkouts: {
+                    load: function () { 
+                        return { 
+                            then: function () { 
+                                return { then: angular.noop };
+                            }
+                        }; 
+                    }
+                },
+                loadMembers: {load: angular.noop},
+                Workout: {}
             });
         });
     });
 
-    it('contains spec with an expectation', function() {
-        expect(angular.isArray($scope.list)).toBeTruthy();
+    it('should has a id from route params', function() {
+        expect(scope.id).toEqual(123);
     });
 });
